@@ -47,7 +47,7 @@ void push(Stack *S,int Val){
 	S->Stack[S->Top] = Val;
 	printf("Pushed : %d\n",S->Stack[S->Top]);}
 }
-// Pop The Last Element (Last In Last Out)
+// Pop The Last Element (Last In First Out)
 void pop(Stack *S){
 	if(S->Top == -1){
 		printf("Stack is Empty !!\n");
