@@ -1,4 +1,4 @@
 # DataStructers-C
 Data Structures in C  
-Linked List - Queue - Stack . 
-Soon :  HashTables - Trees - Graphs - Dijkstra's Algorithm   
+Available : Linked List - Queue - Stack . 
+Soon :  HashTables - Trees - Graphs - Dijkstra's Algorithm - A*'s Algorithm
