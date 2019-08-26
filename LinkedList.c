@@ -10,16 +10,13 @@ struct Node{
 //Define The Linked List
 typedef struct LinkedList LinkedList;
 struct LinkedList{
-	Node *Head;
+	Node* Head;
 };
-
 void Add(Node *N,LinkedList *L);
 void Show(LinkedList L);
 void Remove(LinkedList *L);
 void Initialize(Node *N, LinkedList *L);
-
 int main(int argc, char *argv[]) {
-	
 	
 	printf("============================================\n");
 	printf("============ Double Linked List ============\n");
@@ -31,21 +28,21 @@ int main(int argc, char *argv[]) {
 LinkedList L ;
 LinkedList *L1 =&L;
 
-Node N;
-Node *P = &N;
+Node *P ;
+P= (Node*)malloc(sizeof(Node));
 
 // We Initialize our list " L1 " by the first Node " P " 
 
 Initialize(P, L1);
+	
+Node *P1 ;
+P1 =(Node*)malloc(sizeof(Node));
 
-Node N1;
-Node *P1 = &N1;
+Node *P2 ;
+P2=(Node*)malloc(sizeof(Node)); 
 
-Node N2;
-Node *P2 = &N2;
-
-Node N3;
-Node *P3 = &N3;
+Node *P3 ;
+P3= (Node*)malloc(sizeof(Node));
 
 P->Val = 15;
 P1->Val = 17;
@@ -64,6 +61,7 @@ Show(L);
 
 	return 0;
 }
+
 //Add a Node to The LinkedList
 
 void Add(Node *P,LinkedList *L){
@@ -73,8 +71,8 @@ void Add(Node *P,LinkedList *L){
 	else{
 	
 	L->Head->Next = P;
-	L->Head->Next->Previous =L->Head;
-	L->Head = L->Head->Next;	
+	P->Previous =L->Head;
+	L->Head = P;	
 	}
 }
 //Show The Values of All The Nodes in The LinkedList
@@ -102,5 +100,5 @@ void Remove(LinkedList *L){
 //Initialize The LinkedList " Job of  Constructer in OOP "
 void Initialize(Node *N, LinkedList *L){
     N->Previous = NULL;
-    L->Head = N;
+    L->Head = N;	
 }
