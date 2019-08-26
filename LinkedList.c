@@ -36,9 +36,9 @@ Node *P = (Node*)malloc(sizeof(Node));
 Initialize(P, L1);
 
 
-Node *P1 ;
+
 //Do This 
-P1 =(Node*)malloc(sizeof(Node));
+Node *P1 (Node*)malloc(sizeof(Node));
 
 Node *P2 =(Node*)malloc(sizeof(Node)); 
 
