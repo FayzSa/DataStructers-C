@@ -5,7 +5,7 @@ typedef struct Node Node;
 struct Node{
 	Node* Next;
 	Node* Previous;
-	int Val;
+	void *Val;
 };	
 //Define The Linked List
 typedef struct LinkedList LinkedList;
@@ -16,6 +16,7 @@ void Add(Node *N,LinkedList *L);
 void Show(LinkedList L);
 void Remove(LinkedList *L);
 void Initialize(Node *N, LinkedList *L);
+
 int main(int argc, char *argv[]) {
 	
 	printf("============================================\n");
@@ -28,26 +29,25 @@ int main(int argc, char *argv[]) {
 LinkedList L ;
 LinkedList *L1 =&L;
 
-Node *P ;
-P= (Node*)malloc(sizeof(Node));
+Node *P = (Node*)malloc(sizeof(Node));
 
 // We Initialize our list " L1 " by the first Node " P " 
 
 Initialize(P, L1);
-	
+
+
 Node *P1 ;
+//Do This 
 P1 =(Node*)malloc(sizeof(Node));
 
-Node *P2 ;
-P2=(Node*)malloc(sizeof(Node)); 
+Node *P2 =(Node*)malloc(sizeof(Node)); 
 
-Node *P3 ;
-P3= (Node*)malloc(sizeof(Node));
+Node *P3 = (Node*)malloc(sizeof(Node));
 
-P->Val = 15;
-P1->Val = 17;
-P2->Val = 18;
-P3->Val = 18*2;
+P->Val = (int*)15;
+P1->Val = (int*)17;
+P2->Val = (int*)18;
+P3->Val = (int*)(18*2);
 
 Add(P1,L1);
 Add(P2,L1);
@@ -58,6 +58,7 @@ Show(L);
 Remove(L1);
 
 Show(L);
+
 
 	return 0;
 }
