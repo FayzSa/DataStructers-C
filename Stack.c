@@ -1,60 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
-//Define The Stack
+
+typedef struct Node Node;
 typedef struct Stack Stack;
-struct Stack{
-	int Top;
-	int *Stack;
-	int Size;
+
+struct Node{
+ void *Val;
+ Node *Link;
 };
-void Initialize(Stack *S,int StackSize);
-void push(Stack *S,int Val);
-void pop(Stack *S);
-int main(int argc, char *argv[]){
-	printf("============================================\n");
-	printf("================== Stack ===================\n");
-	printf("============================================\n\n");
-	Stack S;
-	Stack *S1 = &S;
-	 
-	Initialize(S1,5);
-	push(S1,15);
-	push(S1,16);
-	push(S1,17);
-	push(S1,18);
-	push(S1,19);
-	push(S1,12);
-	push(S1,11);
-	pop(S1);
-	pop(S1);
-	push(S1,12);
-	push(S1,11);
+
+struct Stack{
+	Node *Top;
+	int *isEmpty;
+};
+void Reverse(Stack *S,Node *Head);
+Node* Push(Stack *S,Node *N,int *Val);
+Node* Pop(Stack *S);
+int main(int argc, char *argv[]) {
+ 	Stack *S = (Stack*)malloc(sizeof(Stack));
+ 	S->isEmpty = (int*)0;
+	Node *head = (Node*)malloc(sizeof(Node));
+	Push(S,head,(int*)17);
+	Node *N = (Node*)malloc(sizeof(Node));	
+	Push(S,N,(int*)47);
+	printf("%d \n",S->Top->Val);
+	Pop(S);
+	printf("%d \n",S->Top->Val);	
+	Pop(S);
+	printf("%d \n",S->Top->Val);	
+	
 	return 0;
 }
-// Initialize the Stack and its Size " Job of  Constructer in OOP "
-void Initialize(Stack *S,int StackSize){
-	S->Size = StackSize;
-	S->Stack =  malloc(StackSize * sizeof(int));
-	S->Top = -1;
-}
-//Add an Eelement to the Stack 
-void push(Stack *S,int Val){
-	if(S->Size == (S->Top + 1)){
-		printf("Stack is Full\n");
-	}else{
-	
-	S->Top = S->Top +1;
-	S->Stack[S->Top] = Val;
-	printf("Pushed : %d\n",S->Stack[S->Top]);}
-}
-// Pop The Last Element (Last In First Out)
-void pop(Stack *S){
-	if(S->Top == -1){
-		printf("Stack is Empty !!\n");
+
+Node* Push(Stack *S,Node *N,int *Val){		
+	if(S->Top == NULL){
+		S->Top = N;
+		N->Link = NULL;
+		N->Val = Val;
+		S->isEmpty =(int*) 0;
+	return;
 	}
-	else{
-		printf("Poped : %d\n",S->Stack[S->Top]);
-		S->Top --;
-	
-	}
+	N->Link = S->Top;
+	S->Top = N;
+	N->Val = Val;
+	return N;
 }
+
+Node *Pop(Stack *S){
+	Stack *temp = S;
+	if(S->isEmpty)return;
+	S->Top = temp->Top->Link;
+	if(S->Top==NULL)S->isEmpty =(int*)1;
+	
+}
+
