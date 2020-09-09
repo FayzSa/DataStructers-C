@@ -10,11 +10,19 @@ struct BSTNode {
 };
 BSTNode *insert(BSTNode *root,void *Data);
 BSTNode *GetNewBSTNode(void *Data);
+BSTNode *findMax(BSTNode *root);
+BSTNode *findMin(BSTNode *root);
 BSTNode *root;
 int main(int argc, char *argv[]) {
 	root = insert(root,(int*)15);
 	root = insert(root,(int*)12);
-
+	root = insert(root,(int*)18);
+	root = insert(root,(int*)5);
+	root = insert(root,(int*)28);
+	root = insert(root,(int*)29);
+	root = insert(root,(int*)11);
+	printf("MAX = %d\n",findMax(root)->Data);
+	printf("MIN = %d\n",findMin(root)->Data);
 	return 0;
 }
 
@@ -31,11 +39,24 @@ BSTNode *insert(BSTNode *root,void *Data){
 		root = GetNewBSTNode(Data);
 	}
 	else if(Data <= root->Data){
-		
 		root->Left = insert(root->Left,Data);		
 	}
-	else {
+	else if(Data > root->Data){
+	
 		root->Right = insert(root->Right,Data);
 	}
+		
+
 	return root;
+}
+
+BSTNode *findMin(BSTNode *root){
+	if(root == NULL) return NULL;
+	return(root->Left == NULL)? root : findMin(root->Left); 
+}
+
+
+BSTNode *findMax(BSTNode *root){
+	if(root == NULL) return NULL;
+	return(root->Right == NULL)? root : findMax(root->Right); 
 }
